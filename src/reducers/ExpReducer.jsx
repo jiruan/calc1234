@@ -1,7 +1,9 @@
 import BigEval from 'bigeval';
 
 const evaluator = new BigEval();
+
 const exponentConversionRegex = /\^/;
+const multiplyConversionRegex = /[Xx]/;
 
 function ExpReducer(state = '', action = null) {
   switch (action.type) {
@@ -14,12 +16,27 @@ function ExpReducer(state = '', action = null) {
   }
 
   if(action.type === 'EVAL') {
-    let convertedStr = state.replace(exponentConversionRegex, '**');
+    if(state === '') {
+      return '';
+    }
 
-    return evaluator.exec(convertedStr);
+    let convertedStr = state;
+
+    convertedStr = convertedStr.replace(exponentConversionRegex, '**');
+    convertedStr = convertedStr.replace(multiplyConversionRegex, '*');
+
+    return String(evaluator.exec(convertedStr));
   }
 
   return state;
+}
+
+export function expEval() {
+  return (dispatch) => {
+    dispatch({
+      type: 'EVAL',
+    });
+  };
 }
 
 export function append(symbol) {
@@ -29,20 +46,12 @@ export function append(symbol) {
       data: symbol,
     });
   };
-} 
+}
 
 export function clear() {
   return (dispatch) => {
     dispatch({
       type: 'CLEAR',
-    });
-  };
-}
-
-export function expEval() {
-  return (dispatch) => {
-    dispatch({
-      type: 'EVAL',
     });
   };
 }

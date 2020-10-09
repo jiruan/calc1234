@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Grid, Avatar, IconButton, makeStyles } from '@material-ui/core';
 
 const widgetRadius = 100;
-const numKeyColor = '#A7ABCE';
+const opKeyColor = '#f8da32';
 
 const useStyle = makeStyles({
   root: {
     textAlign: 'center',
-    backgroundColor: numKeyColor,
+    backgroundColor: opKeyColor,
     height: widgetRadius,
     width: widgetRadius,
   },

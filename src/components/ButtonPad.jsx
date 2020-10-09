@@ -1,20 +1,26 @@
 import React from 'react';
+import { Container, makeStyles } from '@material-ui/core';
 
-import TopButtonArray from './TopButtonArray';
-import MidButtonArray from './MidButtonArray';
-import BottomButtonArray from './BottomButtonArray';
+import ButtonArray from './ButtonArray';
+import { arrKey, keyObj } from '../util/keyConfig';
+
+const useStyle = makeStyles({
+  root: {
+    padding: 60,
+  },
+});
 
 function ButtonPad () {
+  const styleClass = useStyle();
+
+  const keyPad = keyObj.map((keyArray, index) => {
+    return <ButtonArray context={keyArray} key={arrKey[index]} />
+  });
+
   return (
-    <>
-      <TopButtonArray />
-
-      <MidButtonArray symbols={['7', '8', '9', '-']} />
-      <MidButtonArray symbols={['4', '5', '6', '+']} />
-      <MidButtonArray symbols={['1', '2', '3', '^']} />
-
-      <BottomButtonArray />
-    </>
+    <Container maxWidth='sm' className={styleClass.root}>
+      {keyPad}
+    </Container>
   );
 }
 

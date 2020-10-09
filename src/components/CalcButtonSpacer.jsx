@@ -1,11 +1,23 @@
 import React from 'react';
 
-import { Paper, Grid } from '@material-ui/core';
+import { Paper, Grid, makeStyles } from '@material-ui/core';
+
+const widgetRadius = 100;
+
+const useStyle = makeStyles({
+  root: {
+    height: widgetRadius,
+    width: widgetRadius,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+  },
+});
 
 function CalcButtonSpacer () {
+  const styleClass = useStyle();
+
   return (
-    <Grid item xs>
-      <Paper elevation={0} />
+    <Grid item xl>
+      <Paper elevation={0} className={styleClass.root} />
     </Grid>
   );
 }

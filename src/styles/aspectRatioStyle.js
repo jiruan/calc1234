@@ -37,6 +37,36 @@ export const buttonRadii = {
   },
 };
 
+export const keyFontSize = {
+  '@media (min-aspect-ratio: 6/13)': {
+    fontSize: '8vh',
+  },
+  '@media (min-aspect-ratio: 207/448)': {
+    fontSize: '8vh',
+  },
+  '@media (min-aspect-ratio: 411/823)': {
+    fontSize: '10vh',
+  },
+  '@media (min-aspect-ratio: 375/667)': {
+    fontSize: '10vh',
+  },
+  '@media (min-aspect-ratio: 9/16)': {
+    fontSize: '10vh',
+  },
+  '@media (min-aspect-ratio: 40/71)': {
+    fontSize: '9vh',
+  },
+  '@media (min-aspect-ratio: 512/683)': {
+    fontSize: '9vh',
+  },
+  '@media (min-aspect-ratio: 3/4)': {
+    fontSize: '10vh',
+  },
+  '@media (min-aspect-ratio: 16/9)': {
+    fontSize: '15vh',
+  },
+};
+
 export const keyPadPadding = {
   padding: '4vw',
   '@media (min-aspect-ratio: 6/13)': {

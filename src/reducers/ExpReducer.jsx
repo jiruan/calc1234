@@ -25,7 +25,7 @@ function ExpReducer(state = '', action = null) {
 
     return evaledExp === '0' ? '' : evaledExp;
   } else if(action.type === 'APPEND') {
-    if(state.length < 16) {
+    if(state.length < 5) {
       return state + action.data;
     } else {
       return state;

@@ -2,9 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid, Avatar, IconButton, makeStyles } from '@material-ui/core';
 
-import { buttonRadii } from '../styles/aspectRatioStyle';
+import { buttonRadii, keyFontSize } from '../styles/aspectRatioStyle';
 
-const widgetRadius = '15vh';
 const numKeyColor = '#A7ABCE';
 
 let calcButtonStyle = {
@@ -14,12 +13,12 @@ let calcButtonStyle = {
   },
 
   button: {
-    fontSize: widgetRadius - 25,
   },
 };
 
 calcButtonStyle.root = Object.assign(calcButtonStyle.root, buttonRadii);
 calcButtonStyle.button = Object.assign(calcButtonStyle.button, buttonRadii);
+calcButtonStyle.button = Object.assign(calcButtonStyle.button, keyFontSize);
 
 const useStyle = makeStyles(calcButtonStyle);
 

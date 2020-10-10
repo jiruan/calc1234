@@ -2,21 +2,48 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid, Avatar, IconButton, makeStyles } from '@material-ui/core';
 
-const widgetRadius = 100;
+const widgetRadius = '15vh';
 const opKeyColor = '#f8da32';
 
 const useStyle = makeStyles({
   root: {
     textAlign: 'center',
     backgroundColor: opKeyColor,
-    height: widgetRadius,
-    width: widgetRadius,
+    '@media (min-aspect-ratio: 207/448)': {
+      height: '15vh',
+      width: '15vh',
+    },
+    '@media (min-aspect-ratio: 9/16)': {
+      height: '10vh',
+      width: '10vh',
+    },
+    '@media (min-aspect-ratio: 4/3)': {
+      height: '15vh',
+      width: '15vh',
+    },
+    '@media (min-aspect-ratio: 16/9)': {
+      height: '8vh',
+      width: '8vh',
+    },  
   },
-
   button: {
     fontSize: widgetRadius - 25,
-    height: widgetRadius,
-    width: widgetRadius,
+    '@media (min-aspect-ratio: 207/448)': {
+      height: '15vh',
+      width: '15vh',
+    },
+    '@media (min-aspect-ratio: 9/16)': {
+      height: '10vh',
+      width: '10vh',
+    },
+    '@media (min-aspect-ratio: 4/3)': {
+      height: '15vh',
+      width: '15vh',
+    },
+     '@media (min-aspect-ratio: 16/9)': {
+      height: '8vh',
+      width: '8vh',
+    },
   },
 });
 

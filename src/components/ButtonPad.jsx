@@ -6,7 +6,7 @@ import { arrKey, keyObj } from '../util/keyConfig';
 
 const useStyle = makeStyles({
   root: {
-    padding: 60,
+    padding: '4vw',
   },
 });
 

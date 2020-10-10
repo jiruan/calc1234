@@ -2,13 +2,10 @@ import BigEval from 'bigeval';
 
 const evaluator = new BigEval();
 
-const exponentConversionRegex = /\^/;
 const multiplyConversionRegex = /[Xx]/;
 
 function ExpReducer(state = '', action = null) {
   switch (action.type) {
-    case 'APPEND':
-      return state + action.data;
     case 'CLEAR':
       return '';
     default:
@@ -22,10 +19,17 @@ function ExpReducer(state = '', action = null) {
 
     let convertedStr = state;
 
-    convertedStr = convertedStr.replace(exponentConversionRegex, '**');
     convertedStr = convertedStr.replace(multiplyConversionRegex, '*');
 
-    return String(evaluator.exec(convertedStr));
+    const evaledExp = String(evaluator.exec(convertedStr));
+
+    return evaledExp === '0' ? '' : evaledExp;
+  } else if(action.type === 'APPEND') {
+    if(state.length < 16) {
+      return state + action.data;
+    } else {
+      return state;
+    }
   }
 
   return state;

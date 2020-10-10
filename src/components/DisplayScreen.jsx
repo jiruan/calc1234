@@ -1,44 +1,50 @@
-import React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
+import  React from 'react';
+import { useSelector } from 'react-redux';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
 
-let font_size = 160;
+let font_size = 120;
 
-const useStyles = makeStyles({
+let useStyles = makeStyles({
   root: {
     display: 'flex',
-    overflow: 'auto',
+    overflow: 'hidden',
     flexDirection: 'column',
     height: 240,
-    fontSize: font_size,
     color: '#acafd1',
     backgroundColor: 'rgba(0, 0, 0, 0)',
-    textAlign: 'right',
     marginRight: 75,
     marginLeft: 75,
   },
 });
 
-function DisplayScreen ({ exp }) {
+function DisplayScreen () {
+  let exp = useSelector((state) => state.expr);
   const styleClass = useStyles();
 
-  let expression;
-
-  if (exp === '') {
-    expression = '0';
+  // this rescales the font based on the length of the expression
+  // this is a rather arbitrary font scaling algorithm
+  if(exp.length > 5) {
+    if(font_size > 75) {
+      font_size = 120 - (exp.length-5) * 15;
+    } else if(font_size > 40) {
+      font_size = 60 - (exp.length - 10) * 4;
+    }
   } else {
-    expression = exp;
+    font_size = 120;
   }
 
-  const display = (
-    <span>
-      {expression}
-    </span>
-  );
+  let expression = exp === '' ? '0' : exp;
 
   return (
     <Grid container spacing={0}>
       <Grid item xs className={styleClass.root}>
-        {display}
+        <Typography
+          style={{
+            fontSize: font_size,
+            textAlign: 'right',
+          }}>
+            {expression}
+        </Typography>
       </Grid>
     </Grid>
   );

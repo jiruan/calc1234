@@ -1,30 +1,35 @@
 import { append, clear, expEval } from '../reducers/ExpReducer';
 
-export const numKey = 1;
-export const opKey = 2;
-export const spacer = 3;
+// constants for the key type
+export const numKey = 1; // this denotes that the key is a digit
+export const opKey = 2; // this denotes that the key is an operator
+export const spacer = 3; // this denotes no key should exist
 
+// configure the keypad display here
 const keyConfig = [
   ['C', ' ', '/', 'x'],
   ['7', '8', '9', '-'],
   ['4', '5', '6', '+'],
-  ['1', '2', '3', '^'],
+  ['1', '2', '3', ' '],
   [' ', '0', '.', '='],
 ];
 
+// configure the key type here
 const keyType = [
   [opKey,  spacer, opKey,  opKey],
   [numKey, numKey, numKey, opKey],
   [numKey, numKey, numKey, opKey],
-  [numKey, numKey, numKey, opKey],
+  [numKey, numKey, numKey, spacer],
   [spacer, numKey, numKey, opKey],
 ];
 
+// configure the function to execute when the key is pressed here
+// spacers need no function and thus has 'null'
 const keyFunc = [
   [clear,  null,   append, append],
   [append, append, append, append],
   [append, append, append, append],
-  [append, append, append, append],
+  [append, append, append, null],
   [null,   append, append, expEval],
 ];
 

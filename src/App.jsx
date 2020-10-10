@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Container, Divider, Box, makeStyles } from '@material-ui/core';
 
 import TopNav from './components/TopNav';
@@ -14,16 +13,13 @@ const useStyles = makeStyles({
 
 function App() {
   const styleClass = useStyles();
-  const expr = useSelector((state) => state.expr);
 
   return (
     <Container maxWidth='sm'>
       <Box className={styleClass.root}>
         <TopNav />
-        <DisplayScreen exp={expr} />
-
+        <DisplayScreen />
         <Divider />
-
         <ButtonPad />
       </Box>
     </Container>

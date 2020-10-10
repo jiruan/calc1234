@@ -1,28 +1,17 @@
 import React from 'react';
-
 import { Paper, Grid, makeStyles } from '@material-ui/core';
 
-const useStyle = makeStyles({
+import { buttonRadii } from '../styles/aspectRatioStyle';
+
+let spacerStyle = {
   root: {
-    '@media (min-aspect-ratio: 207/448)': {
-      height: '15vh',
-      width: '15vh',
-    },
-    '@media (min-aspect-ratio: 9/16)': {
-      height: '10vh',
-      width: '10vh',
-    },
-    '@media (min-aspect-ratio: 4/3)': {
-      height: '15vh',
-      width: '15vh',
-    },
-    '@media (min-aspect-ratio: 16/9)': {
-      height: '8vh',
-      width: '8vh',
-    }, 
     backgroundColor: 'rgba(0, 0, 0, 0)',
   },
-});
+};
+
+spacerStyle.root = Object.assign(spacerStyle.root, buttonRadii);
+
+const useStyle = makeStyles(spacerStyle);
 
 function CalcButtonSpacer () {
   const styleClass = useStyle();

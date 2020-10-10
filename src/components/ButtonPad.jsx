@@ -4,10 +4,10 @@ import { Container, makeStyles } from '@material-ui/core';
 import ButtonArray from './ButtonArray';
 import { arrKey, keyObj } from '../util/keyConfig';
 
+import { keyPadPadding } from '../styles/aspectRatioStyle';
+
 const useStyle = makeStyles({
-  root: {
-    padding: '4vw',
-  },
+  root: keyPadPadding,
 });
 
 function ButtonPad () {

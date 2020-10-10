@@ -2,50 +2,25 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid, Avatar, IconButton, makeStyles } from '@material-ui/core';
 
+import { buttonRadii } from '../styles/aspectRatioStyle';
+
 const widgetRadius = '15vh';
 const opKeyColor = '#f8da32';
 
-const useStyle = makeStyles({
+let opButtonStyle = {
   root: {
     textAlign: 'center',
     backgroundColor: opKeyColor,
-    '@media (min-aspect-ratio: 207/448)': {
-      height: '15vh',
-      width: '15vh',
-    },
-    '@media (min-aspect-ratio: 9/16)': {
-      height: '10vh',
-      width: '10vh',
-    },
-    '@media (min-aspect-ratio: 4/3)': {
-      height: '15vh',
-      width: '15vh',
-    },
-    '@media (min-aspect-ratio: 16/9)': {
-      height: '8vh',
-      width: '8vh',
-    },  
   },
   button: {
     fontSize: widgetRadius - 25,
-    '@media (min-aspect-ratio: 207/448)': {
-      height: '15vh',
-      width: '15vh',
-    },
-    '@media (min-aspect-ratio: 9/16)': {
-      height: '10vh',
-      width: '10vh',
-    },
-    '@media (min-aspect-ratio: 4/3)': {
-      height: '15vh',
-      width: '15vh',
-    },
-     '@media (min-aspect-ratio: 16/9)': {
-      height: '8vh',
-      width: '8vh',
-    },
   },
-});
+};
+
+opButtonStyle.root = Object.assign(opButtonStyle.root, buttonRadii);
+opButtonStyle.button = Object.assign(opButtonStyle.button, buttonRadii);
+
+const useStyle = makeStyles(opButtonStyle);
 
 function CalcButton ({ children, func }) {
 

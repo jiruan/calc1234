@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Container, Divider, Box, makeStyles } from '@material-ui/core';
 
 import TopNav from './components/TopNav';
 import DisplayScreen from './components/DisplayScreen';
 import ButtonPad from './components/ButtonPad';
+import History from './components/History';
+import { resetHistory } from './util/history';
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +21,8 @@ const useStyles = makeStyles({
 
 function App() {
   const styleClass = useStyles();
+
+  useEffect(resetHistory, []);
 
   return (
     <Router>
@@ -35,6 +39,10 @@ function App() {
                 This is Jimmy Ruan's submission to the Front End Developer Challenge.
                 It is a basic calculator app.
               </p>
+            </Route>
+
+            <Route path='/history'>
+              <History />
             </Route>
 
             {/**  

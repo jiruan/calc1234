@@ -40,7 +40,7 @@ function TopNav () {
       </AppBar>
       <Menu
         classes={{paper: styleClass.menu}}
-        transition={Fade}
+        TransitionComponent={Fade}
         anchorEl={menuOpen}
         open={Boolean(menuOpen)}
         onClose={closeHandler}
@@ -48,6 +48,11 @@ function TopNav () {
         <MenuItem onClick={closeHandler} classes={{root: styleClass.menuItem}}>
           <Link replace to='/' style={{textDecoration: 'none', color: '#b8bbdd'}}>
             <b>Calculator</b>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={closeHandler} classes={{root: styleClass.menuItem}}>
+          <Link replace to='/history' style={{textDecoration: 'none', color: '#b8bbdd'}}>
+            <b>History</b>
           </Link>
         </MenuItem>
         <Divider />

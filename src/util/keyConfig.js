@@ -25,6 +25,7 @@ const keyType = [
 
 // configure the function to execute when the key is pressed here
 // spacers need no function and thus has 'null'
+// '=' also need no function since it must use its own special function
 const keyFunc = [
   [clear,  pop,   append, append],
   [append, append, append, append],

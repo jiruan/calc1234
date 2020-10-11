@@ -22,7 +22,7 @@ opButtonStyle.button = Object.assign(opButtonStyle.button, keyFontSize);
 
 const useStyle = makeStyles(opButtonStyle);
 
-function CalcButton ({ children, func }) {
+function OpButton ({ children, func }) {
   const dispatch = useDispatch();
   const styleClass = useStyle();
 
@@ -39,4 +39,4 @@ function CalcButton ({ children, func }) {
   );
 }
 
-export default CalcButton;
+export default OpButton;

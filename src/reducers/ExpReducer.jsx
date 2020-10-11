@@ -1,5 +1,7 @@
 import BigEval from 'bigeval'; // https://www.npmjs.com/package/bigeval
 
+import { addHistory } from '../util/history';
+
 const evaluator = new BigEval();
 
 const multiplyConversionRegex = /[Xx]/g; // matches for 'X' and 'x'; used to convert 'x' to '*'
@@ -33,7 +35,7 @@ function ExpReducer(state = initState, action = null) {
   }
 
   if(action.type === 'EVAL') {
-    if(state.exp === '') {
+    if(state.exp === '') { // nothing to eval
       return {
         exp: '',
         shouldResize: false,
@@ -42,12 +44,14 @@ function ExpReducer(state = initState, action = null) {
 
     let convertedStr = state.exp;
 
+    // insert more substitution and sanitization here
     convertedStr = convertedStr.replace(multiplyConversionRegex, '*');
-
-    console.log(convertedStr);
 
     let evaledExp = String(evaluator.exec(convertedStr));
     evaledExp = evaledExp === '0' ? '' : evaledExp;
+
+    // add history to localStorage
+    addHistory(convertedStr, evaledExp);
 
     return {
       exp: evaledExp,
@@ -55,7 +59,7 @@ function ExpReducer(state = initState, action = null) {
     };
   } else if(action.type === 'APPEND') {
     if(state.exp.length < 10) { // also rather arbitrary; keeps the font from shrinking to illegibility
-      return { 
+      return {
         exp: state.exp + action.data,
         shouldResize: false,
       };

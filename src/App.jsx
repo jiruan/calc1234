@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Container, Divider, Box, makeStyles } from '@material-ui/core';
 
 import TopNav from './components/TopNav';
@@ -9,24 +10,48 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: '#2f388c',
   },
+  about: {
+    fontSize: '15vh',
+    height: '100%',
+    color: '#acafd1',
+  },
 });
 
 function App() {
   const styleClass = useStyles();
 
-  // TopNav - holds the top navigation bar
-  // DisplayScreen - displays the numbers and results
-  // ButtonPad - the calculator's keypad
-
   return (
-    <Container maxWidth='sm'>
-      <Box className={styleClass.root}>
-        <TopNav />
-        <DisplayScreen />
-        <Divider />
-        <ButtonPad />
-      </Box>
-    </Container>
+    <Router>
+      <Container maxWidth='sm'>
+        <Box className={styleClass.root}>
+          <TopNav />
+          <Switch>
+
+            {/**
+              NOTE: Just a simple explanation should suffice
+            */}
+            <Route path='/about'>
+              <p className={styleClass.about}>
+                This is Jimmy Ruan's submission to the Front End Developer Challenge.
+                It is a basic calculator app.
+              </p>
+            </Route>
+
+            {/**  
+              TopNav - holds the top navigation bar
+              DisplayScreen - displays the numbers and results
+              ButtonPad - the calculator's keypad
+            */}
+            <Route path='/'>
+              <DisplayScreen />
+              <Divider />
+              <ButtonPad />
+            </Route>
+
+          </Switch>
+        </Box>
+      </Container>
+    </Router>
   );
 }
 

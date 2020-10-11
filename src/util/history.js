@@ -6,8 +6,6 @@
  * }
 */
 
-const maxHistoryEntry = 10;
-
 export function addHistory(expr, res) {
   const newEntry = {
     q: expr,
@@ -24,9 +22,8 @@ export function addHistory(expr, res) {
 
     if(a !== res || q !== expr) {
       // ensures that there is no consecutive duplicate entries
-      if(pastHistory.length >= maxHistoryEntry) {
-        pastHistory = pastHistory.slice(1, maxHistoryEntry);
-        // limit the number of entries for history
+      if(pastHistory.length >= 10) {
+        pastHistory = pastHistory.slice(1, 10); // limit history to only 15 entries
       }
 
       pastHistory = pastHistory.concat(newEntry);

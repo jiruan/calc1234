@@ -11,6 +11,11 @@ const initState = {
 
 function ExpReducer(state = initState, action = null) {
   switch (action.type) {
+    case 'POP':
+      return {
+        exp: state.exp.slice(0, state.exp.length - 1),
+        shouldResize: true,
+      };
     case 'UNSET':
       return {
         exp: state.exp,
@@ -92,6 +97,14 @@ export function unset() {
   return (dispatch) => {
     dispatch({
       type: 'UNSET',
+    });
+  };
+}
+
+export function pop() {
+  return (dispatch) => {
+    dispatch({
+      type: 'POP',
     });
   };
 }

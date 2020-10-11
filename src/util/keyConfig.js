@@ -7,7 +7,7 @@ export const spacer = 3; // this denotes no key should exist
 
 // configure the keypad display here
 const keyConfig = [
-  ['C', '🠔', '/', 'x'],
+  ['C', '␈', '/', 'x'],
   ['7', '8', '9', '-'],
   ['4', '5', '6', '+'],
   ['1', '2', '3', ' '],

@@ -1,11 +1,16 @@
 import  React from 'react';
 import { forwardRef, createRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 
 import { displayScreenHeight } from '../styles/aspectRatioStyle';
+import { unset } from '../reducers/ExpReducer';
 
-let font_size = 15;
+const originalFontSize = 15; // rather arbitrary
+const smallestFontSize = 5;
+const fontShrinkRate = 2;
+
+let font_size = originalFontSize; // snake case to avoid confusion with the attribute
 
 let displayStyle = {
   root: {
@@ -25,25 +30,13 @@ displayStyle.root = Object.assign(displayStyle.root, displayScreenHeight);
 const useStyles = makeStyles(displayStyle);
 
 function DisplayScreen () {
-  let exp = useSelector((state) => state.expr);
+  const dispatch = useDispatch();
   const styleClass = useStyles();
 
-  const displayRef = createRef();
+  const displayRef = createRef(); // reference to digital display
   const shadowRef = createRef();
-
-  // this rescales the font based on the length of the expression
-  // this is a rather arbitrary font scaling algorithm
-  /**
-  if(exp.length > 5) {
-    if(font_size > 75) {
-      font_size -= 15;
-    } else if(font_size > 40) {
-      font_size -= 4;
-    }
-  } else {
-    font_size = 15;
-  }
-  */
+  
+  let expObj = useSelector((state) => state.expr);
   
   const DigitDisplay = forwardRef((props, ref) => (
     <Typography
@@ -77,17 +70,20 @@ function DisplayScreen () {
     if(displayRef.current && shadowRef.current) {
       const widthIfAppended = shadowRef.current.scrollWidth;
 
-      if(widthIfAppended > displayRef.current.offsetWidth) {
-        if(font_size > 5) {
-          font_size -= 2;
+      if(widthIfAppended > displayRef.current.offsetWidth) { // shrinks font size of display will overflow
+        if(font_size > smallestFontSize) {
+          font_size -= fontShrinkRate;
+          dispatch(unset()); // keep updating state and shrink font size until shadowdigitdisplay no longer overflows
         }
+      } else if(expObj.shouldResize) { // resets font size when clear or = are pressed
+        font_size = originalFontSize;
+
+        dispatch(unset());
       }
-
-      console.log(widthIfAppended, ' : ', displayRef.current.offsetWidth, ' : ', displayRef.current.scrollWidth, ' : ', exp.length, ' : ', font_size);
     }
-  }, [displayRef, shadowRef, exp]);
+  }, [displayRef, shadowRef, expObj, dispatch]); // why I need dispatch? IDK - ESLINT hates not having it
 
-  let expression = exp === '' ? '0' : exp;
+  const expression = (expObj.exp === '') ? '0' : expObj.exp;
 
   return (
     <Grid container spacing={0}>

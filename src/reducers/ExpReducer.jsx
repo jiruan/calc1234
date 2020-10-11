@@ -2,33 +2,61 @@ import BigEval from 'bigeval';
 
 const evaluator = new BigEval();
 
-const multiplyConversionRegex = /[Xx]/;
+const multiplyConversionRegex = /[Xx]/g;
 
-function ExpReducer(state = '', action = null) {
+const initState = {
+  exp: '',
+  shouldResize: false,
+}
+
+function ExpReducer(state = initState, action = null) {
   switch (action.type) {
+    case 'UNSET':
+      return {
+        exp: state.exp,
+        shouldResize: false,
+      };
     case 'CLEAR':
-      return '';
+      return {
+        exp: '',
+        shouldResize: true,
+      };
     default:
       break;
   }
 
   if(action.type === 'EVAL') {
-    if(state === '') {
-      return '';
+    if(state.exp === '') {
+      return {
+        exp: '',
+        shouldResize: false,
+      };
     }
 
-    let convertedStr = state;
+    let convertedStr = state.exp;
 
     convertedStr = convertedStr.replace(multiplyConversionRegex, '*');
 
-    const evaledExp = String(evaluator.exec(convertedStr));
+    console.log(convertedStr);
 
-    return evaledExp === '0' ? '' : evaledExp;
+    let evaledExp = String(evaluator.exec(convertedStr));
+    evaledExp = evaledExp === '0' ? '' : evaledExp;
+
+    return {
+      exp: evaledExp,
+      shouldResize: true,
+    };
   } else if(action.type === 'APPEND') {
-    if(state.length < 10) { // also rather arbitrary; keeps the font from shrinking to illegibility
-      return state + action.data;
+    if(state.exp.length < 10) { // also rather arbitrary; keeps the font from shrinking to illegibility
+      return { 
+        exp: state.exp + action.data,
+        shouldResize: false,
+      };
     } else {
-      return state;
+      return {
+        exp: state.exp,
+        shouldResize: false,
+      };
     }
   }
 
@@ -56,6 +84,14 @@ export function clear() {
   return (dispatch) => {
     dispatch({
       type: 'CLEAR',
+    });
+  };
+}
+
+export function unset() {
+  return (dispatch) => {
+    dispatch({
+      type: 'UNSET',
     });
   };
 }

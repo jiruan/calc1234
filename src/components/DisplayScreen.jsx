@@ -25,6 +25,7 @@ let displayStyle = {
   },
 };
 
+// add screen height media queries
 displayStyle.root = Object.assign(displayStyle.root, displayScreenHeight);
 
 const useStyles = makeStyles(displayStyle);
@@ -81,6 +82,8 @@ function DisplayScreen () {
         dispatch(unset());
       }
     }
+
+    // NOTE: don't ever have unconditional dispatches - useEffect will be stuck in a call loop
   }, [displayRef, shadowRef, expObj, dispatch]); // why I need dispatch? IDK - ESLINT hates not having it
 
   const expression = (expObj.exp === '') ? '0' : expObj.exp;

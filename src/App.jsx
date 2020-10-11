@@ -14,6 +14,10 @@ const useStyles = makeStyles({
 function App() {
   const styleClass = useStyles();
 
+  // TopNav - holds the top navigation bar
+  // DisplayScreen - displays the numbers and results
+  // ButtonPad - the calculator's keypad
+
   return (
     <Container maxWidth='sm'>
       <Box className={styleClass.root}>

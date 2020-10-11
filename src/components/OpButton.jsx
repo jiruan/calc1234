@@ -15,6 +15,7 @@ let opButtonStyle = {
   },
 };
 
+// adds media queries
 opButtonStyle.root = Object.assign(opButtonStyle.root, buttonRadii);
 opButtonStyle.button = Object.assign(opButtonStyle.button, buttonRadii);
 opButtonStyle.button = Object.assign(opButtonStyle.button, keyFontSize);
@@ -22,9 +23,8 @@ opButtonStyle.button = Object.assign(opButtonStyle.button, keyFontSize);
 const useStyle = makeStyles(opButtonStyle);
 
 function CalcButton ({ children, func }) {
-
-  const styleClass = useStyle();
   const dispatch = useDispatch();
+  const styleClass = useStyle();
 
   return (
     <Grid item xl>

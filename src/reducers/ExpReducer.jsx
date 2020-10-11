@@ -1,9 +1,11 @@
-import BigEval from 'bigeval';
+import BigEval from 'bigeval'; // https://www.npmjs.com/package/bigeval
 
 const evaluator = new BigEval();
 
-const multiplyConversionRegex = /[Xx]/g;
+const multiplyConversionRegex = /[Xx]/g; // matches for 'X' and 'x'; used to convert 'x' to '*'
 
+// exp: holds the expression itself
+// shouldResize: signals whether or not to resize the font
 const initState = {
   exp: '',
   shouldResize: false,

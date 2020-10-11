@@ -33,6 +33,7 @@ const keyFunc = [
   [null,   append, append, expEval],
 ];
 
+// required for element keys
 const keyOrder = keyConfig.map((arr, index1) => (
   arr.map((_, index2, cont) => (
     'button' + (index1 * cont.length + index2).toString())
@@ -47,6 +48,7 @@ export const keyObj = keyConfig.map((arr, index1) => (
   }))
 ));
 
+// requires for key array element keys
 export const arrKey = keyConfig.map((elem) => (
   elem.toString()
 ));

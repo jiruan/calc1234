@@ -7,6 +7,7 @@ import DisplayScreen from './components/DisplayScreen';
 import ButtonPad from './components/ButtonPad';
 import History from './components/History';
 import { resetHistory } from './util/history';
+import Conversion from './components/Conversion';
 
 const useStyles = makeStyles({
   root: {
@@ -39,6 +40,10 @@ function App() {
                 This is Jimmy Ruan's submission to the Front End Developer Challenge.
                 It is a basic calculator app.
               </p>
+            </Route>
+
+            <Route path='/conversion'>
+              <Conversion />
             </Route>
 
             <Route path='/history'>

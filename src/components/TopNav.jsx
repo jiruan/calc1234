@@ -55,6 +55,11 @@ function TopNav () {
             <b>History</b>
           </Link>
         </MenuItem>
+        <MenuItem onClick={closeHandler} classes={{root: styleClass.menuItem}}>
+          <Link replace to='/conversion' style={{textDecoration: 'none', color: '#b8bbdd'}}>
+            <b>Conversion</b>
+          </Link>
+        </MenuItem>
         <Divider />
         <MenuItem onClick={closeHandler} classes={{root: styleClass.menuItem}}>
           <Link replace to='/about' style={{textDecoration: 'none', color: '#b8bbdd'}}>

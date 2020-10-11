@@ -85,3 +85,33 @@ export const keyPadPadding = {
     padding: '4vw',
   },
 };
+
+export const displayScreenHeight = {
+  '@media (min-aspect-ratio: 6/13)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 207/448)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 411/823)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 375/667)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 9/16)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 40/71)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 512/683)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 3/4)': {
+    height: '25vh',
+  },
+  '@media (min-aspect-ratio: 16/9)': {
+    height: '25vh',
+  },
+};

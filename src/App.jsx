@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     backgroundColor: '#2f388c',
   },
   about: {
-    fontSize: '15vh',
+    fontSize: '5vh',
     height: '100%',
     color: '#acafd1',
   },
